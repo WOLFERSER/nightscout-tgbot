@@ -24,8 +24,8 @@ Nightscout Telegram Bot is a Telegram bot that monitors blood sugar levels using
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/yourusername/nightscout-telegram-bot.git
-    cd nightscout-telegram-bot
+    git clone https://github.com/WOLFERSER/nightscout-tgbot.git
+    cd nightscout-tgbot
     ```
 
 2. Install the dependencies:
@@ -91,8 +91,8 @@ Nightscout Telegram Bot — это Telegram-бот, который отслеж�
 1. Клонируйте репозиторий:
 
     ```sh
-    git clone https://github.com/yourusername/nightscout-telegram-bot.git
-    cd nightscout-telegram-bot
+    git clone https://github.com/WOLFERSER/nightscout-tgbot.git
+    cd nightscout-tgbot
     ```
 
 2. Установите зависимости:
