@@ -1,0 +1,16 @@
+botToken: 'YOUR_TELEGRAM_BOT_TOKEN'
+nightscoutUrl: 'YOUR_NIGHTSCOUT_URL'
+chatIds:
+  - 'CHAT_ID_1'
+  - 'CHAT_ID_2'
+units: 'mmol/L' #mmol/L or mg/dL
+
+language: 'en'
+# Available language options:
+# en - English
+# de - German
+# es - Spanish
+# zh - Chinese
+# ru - Russian
+# pt - Portuguese
+# fr - French

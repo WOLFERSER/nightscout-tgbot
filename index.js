@@ -1,83 +1,84 @@
 const { Telegraf } = require('telegraf')
 const axios = require('axios')
 const schedule = require('node-schedule')
-const config = require('./config.json')
+const fs = require('fs')
+const yaml = require('js-yaml')
+const translations = require('./translations.js')
+
+// Load config from config.yaml
+const config = yaml.load(fs.readFileSync('./config.yaml', 'utf8'))
 
 const bot = new Telegraf(config.botToken)
-let jobScheduled = false // Переменная для отслеживания, запланировано ли задание
+let jobScheduled = false // Variable to track if the job is already scheduled
+const lang = config.language || 'en' // Default to English if no language is set
+const t = translations[lang] // Get translations for the chosen language
 
-// Функция для получения последнего значения сахара из Nightscout в ммоль/л
+// Function to get the latest blood sugar value from Nightscout in mmol/L or mg/dL
 async function getLastBloodSugar() {
 	try {
-		console.log('Получение данных из Nightscout...')
+		console.log('Getting data from Nightscout...')
 		const response = await axios.get(
 			`${config.nightscoutUrl}/api/v1/entries.json?count=1`
 		)
 		const lastEntry = response.data[0]
-		const mmolValue = (lastEntry.sgv / 18).toFixed(1) // Конвертируем из мг/дл в ммоль/л и округляем до 1 знака после запятой
-		return `Последнее значение сахара: ${mmolValue} ммоль/л`
+		let value
+		if (config.units === 'mg/dL') {
+			value = lastEntry.sgv // Use mg/dL value directly
+		} else {
+			value = (lastEntry.sgv / 18).toFixed(1) // Convert from mg/dL to mmol/L and round to 1 decimal place
+		}
+		return t.lastBloodSugar[config.units].replace('{value}', value)
 	} catch (error) {
-		console.error('Ошибка при получении данных из Nightscout:', error)
-		return 'Не удалось получить данные из Nightscout.'
+		console.error(t.errorGettingData, error)
+		return t.errorGettingData
 	}
 }
 
-// Функция для отправки сообщения в указанный чат
-async function sendMessageToChat(message) {
-	try {
-		console.log(`Отправка сообщения в чат ${config.chatId}...`)
-		await bot.telegram.sendMessage(config.chatId, message)
-		console.log(`Сообщение отправлено в чат ${config.chatId}`)
-	} catch (error) {
-		console.error(
-			`Ошибка при отправке сообщения в чат ${config.chatId}:`,
-			error
-		)
+// Function to send message to specified chats
+async function sendMessageToChats(message) {
+	for (const chatId of config.chatIds) {
+		try {
+			console.log(`Sending message to chat ${chatId}...`)
+			await bot.telegram.sendMessage(chatId, message)
+			console.log(`Message sent to chat ${chatId}`)
+		} catch (error) {
+			console.error(`${t.errorSendingMessage} ${chatId}:`, error)
+		}
 	}
 }
 
-// Обработка команды /start и запуск процесса отправки сообщений раз в час
+// Handle /start command and start the hourly message sending process
 bot.start(async ctx => {
-	console.log(`/start команда выполнена пользователем ${ctx.chat.id}`)
-	ctx.reply(
-		'Бот запущен! Вы будете получать уведомления о показаниях уровня сахара в крови раз в час.'
-	)
+	console.log(`/start command issued by user ${ctx.chat.id}`)
+	ctx.reply(t.startCommand)
 
 	if (!jobScheduled) {
 		jobScheduled = true
 		const message = await getLastBloodSugar()
-		await sendMessageToChat(message)
+		await sendMessageToChats(message)
 
-		// Запланированное задание, которое будет выполняться каждый час
+		// Schedule job to run every hour
 		schedule.scheduleJob('0 * * * *', async () => {
 			const message = await getLastBloodSugar()
-			console.log('Отправляем сообщение указанному пользователю раз в час...')
-			await sendMessageToChat(message)
+			console.log(t.hourlyUpdate)
+			await sendMessageToChats(message)
 		})
 
-		console.log('Задание по отправке сообщений раз в час запущено.')
+		console.log(t.scheduleJobStarted)
 	} else {
-		console.log('Задание уже было запущено ранее.')
+		console.log(t.jobAlreadyStarted)
 	}
 })
 
 bot
 	.launch()
 	.then(() => {
-		console.log('Бот запущен')
+		console.log('Bot started')
 	})
 	.catch(error => {
-		console.error('Ошибка при запуске бота:', error)
+		console.error('Error starting the bot:', error)
 	})
 
-bot.help(ctx =>
-	ctx.reply(
-		'Я отправляю последнее значение сахара в крови раз в час после выполнения команды /start.'
-	)
-)
+bot.help(ctx => ctx.reply(t.helpMessage))
 
-bot.on('text', ctx =>
-	ctx.reply(
-		'Используйте команду /start, чтобы начать получать уведомления о последнем значении сахара в крови.'
-	)
-)
+bot.on('text', ctx => ctx.reply(t.useStartCommand))
