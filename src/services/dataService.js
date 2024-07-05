@@ -1,4 +1,4 @@
-const data = [5.6, 10.2, 21.2, 4.5]
+const data = []
 
 function addDataPoint(value) {
 	if (data.length >= 12) {
