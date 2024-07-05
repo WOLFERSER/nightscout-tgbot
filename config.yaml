@@ -1,8 +1,10 @@
-botToken: 'YOUR_BOT_TOKEN'
-adminId: 'YOUR_ADMIN_ID'
+botToken: 'YOUR_BOT_TOKEN' # Insert your bot token
+adminId: 'YOUR_ADMIN_ID' # Insert your admin ID
 chatIds:
-  - 'USER_ID_1'
-  - 'USER_ID_2'
+  - 'USER_ID_1' # Insert user ID
+  - 'USER_ID_2' # Insert user ID
 
-unit: 'mmol/L' # Units: 'mmol/L' или 'mg/dL'
-language: 'en' # Languages: en, ru, de, es, zh, pt, fr
+nightscoutUrl: 'YOUR_NIGHTSCOUT_URL' # Insert your Nightscout URL
+unit: 'mmol/L' # Unit of measurement, can be 'mmol/L' or 'mg/dL'
+language: 'en' # Language, can be: en, ru, de, es, zh, pt, fr
+
