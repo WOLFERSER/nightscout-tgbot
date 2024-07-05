@@ -1,17 +1,19 @@
 {
 	"name": "nightscout-tgbot",
 	"version": "1.0.0",
-	"description": "Nightscout Telegram Bot for monitoring blood sugar levels. The bot sends the latest blood sugar measurement to specified chats every hour.",
+	"description": "A Telegram bot for sending hourly blood sugar updates using Nightscout API.",
 	"main": "src/index.js",
 	"scripts": {
 		"start": "node src/index.js"
 	},
-	"author": "Dmitry Moshkin",
-	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.21.4",
+		"chart.js": "^4.4.3",
+		"chartjs-node-canvas": "^4.1.6",
 		"js-yaml": "^4.1.0",
-		"node-schedule": "^2.0.0",
-		"telegraf": "^3.38.0"
-	}
+		"node-cron": "^3.0.2",
+		"telegraf": "^4.0.0"
+	},
+	"author": "Dmitry Moshkin",
+	"license": "ISC"
 }

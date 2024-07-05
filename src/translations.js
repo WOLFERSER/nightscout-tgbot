@@ -1,127 +1,191 @@
-const translations = {
-	en: {
-		startCommand:
-			'Bot started! You will receive hourly updates on blood sugar levels.',
-		hourlyUpdate: 'Sending hourly blood sugar updates...',
-		scheduleJobStarted: 'Hourly update job started.',
-		jobAlreadyStarted: 'The job has already been started.',
-		errorGettingData: 'Failed to get data from Nightscout.',
-		errorSendingMessage: 'Error sending message to chat',
-		lastBloodSugar: {
-			'mmol/L': 'Last blood sugar value: {value} mmol/L',
-			'mg/dL': 'Last blood sugar value: {value} mg/dL',
-		},
-		helpMessage:
-			'I send the latest blood sugar value every hour after the /start command.',
-		useStartCommand:
-			'Use the /start command to start receiving hourly blood sugar updates.',
-		notAuthorized: 'You are not authorized to use this command.',
-	},
-	de: {
-		startCommand:
-			'Bot gestartet! Sie erhalten stündliche Updates zu den Blutzuckerwerten.',
-		hourlyUpdate: 'Senden stündlicher Blutzucker-Updates...',
-		scheduleJobStarted: 'Stündlicher Update-Job gestartet.',
-		jobAlreadyStarted: 'Der Job wurde bereits gestartet.',
-		errorGettingData: 'Fehler beim Abrufen der Daten von Nightscout.',
-		errorSendingMessage: 'Fehler beim Senden der Nachricht an den Chat',
-		lastBloodSugar: {
-			'mmol/L': 'Letzter Blutzuckerwert: {value} mmol/L',
-			'mg/dL': 'Letzter Blutzuckerwert: {value} mg/dL',
-		},
-		helpMessage:
-			'Ich sende den neuesten Blutzuckerwert jede Stunde nach dem Befehl /start.',
-		useStartCommand:
-			'Verwenden Sie den Befehl /start, um stündliche Blutzucker-Updates zu erhalten.',
-		notAuthorized: 'Sie sind nicht berechtigt, diesen Befehl zu verwenden.',
-	},
-	es: {
-		startCommand:
-			'¡Bot iniciado! Recibirás actualizaciones horarias sobre los niveles de azúcar en la sangre.',
-		hourlyUpdate: 'Enviando actualizaciones horarias de azúcar en la sangre...',
-		scheduleJobStarted: 'Tarea de actualización horaria iniciada.',
-		jobAlreadyStarted: 'La tarea ya ha sido iniciada.',
-		errorGettingData: 'Error al obtener datos de Nightscout.',
-		errorSendingMessage: 'Error al enviar mensaje al chat',
-		lastBloodSugar: {
-			'mmol/L': 'Último valor de azúcar en sangre: {value} mmol/L',
-			'mg/dL': 'Último valor de azúcar en sangre: {value} mg/dL',
-		},
-		helpMessage:
-			'Envio el último valor de azúcar en sangre cada hora después del comando /start.',
-		useStartCommand:
-			'Usa el comando /start para comenzar a recibir actualizaciones horarias de azúcar en la sangre.',
-		notAuthorized: 'No está autorizado para usar este comando.',
-	},
-	zh: {
-		startCommand: '机器人已启动！您将每小时收到一次血糖水平更新。',
-		hourlyUpdate: '发送每小时血糖更新...',
-		scheduleJobStarted: '每小时更新任务已启动。',
-		jobAlreadyStarted: '任务已被启动。',
-		errorGettingData: '从Nightscout获取数据失败。',
-		errorSendingMessage: '发送消息到聊天时出错',
-		lastBloodSugar: {
-			'mmol/L': '最后的血糖值：{value} mmol/L',
-			'mg/dL': '最后的血糖值：{value} mg/dL',
-		},
-		helpMessage: '在 /start 命令后，我会每小时发送最新的血糖值。',
-		useStartCommand: '使用 /start 命令开始接收每小时的血糖更新。',
-		notAuthorized: '您无权使用此命令。',
-	},
-	ru: {
-		startCommand:
-			'Бот запущен! Вы будете получать обновления уровня сахара в крови каждый час.',
-		hourlyUpdate: 'Отправка ежечасных обновлений уровня сахара в крови...',
-		scheduleJobStarted: 'Ежечасное задание по обновлению запущено.',
-		jobAlreadyStarted: 'Задание уже было запущено.',
-		errorGettingData: 'Не удалось получить данные из Nightscout.',
-		errorSendingMessage: 'Ошибка при отправке сообщения в чат',
-		lastBloodSugar: {
-			'mmol/L': 'Последнее значение сахара в крови: {value} ммоль/л',
-			'mg/dL': 'Последнее значение сахара в крови: {value} мг/дл',
-		},
-		helpMessage:
-			'Я отправляю последнее значение сахара в крови каждый час после команды /start.',
-		useStartCommand:
-			'Используйте команду /start, чтобы начать получать ежечасные обновления уровня сахара в крови.',
-		notAuthorized: 'Вы не авторизованы для использования этой команды.',
-	},
-	pt: {
-		startCommand:
-			'Bot iniciado! Você receberá atualizações horárias sobre os níveis de açúcar no sangue.',
-		hourlyUpdate: 'Enviando atualizações horárias de açúcar no sangue...',
-		scheduleJobStarted: 'Tarefa de atualização horária iniciada.',
-		jobAlreadyStarted: 'A tarefa já foi iniciada.',
-		errorGettingData: 'Falha ao obter dados do Nightscout.',
-		errorSendingMessage: 'Erro ao enviar mensagem para o chat',
-		lastBloodSugar: {
-			'mmol/L': 'Último valor de açúcar no sangue: {value} mmol/L',
-			'mg/dL': 'Último valor de açúcar no sangue: {value} mg/dL',
-		},
-		helpMessage:
-			'Envio o valor mais recente de açúcar no sangue a cada hora após o comando /start.',
-		useStartCommand:
-			'Use o comando /start para começar a receber atualizações horárias de açúcar no sangue.',
-		notAuthorized: 'Você não está autorizado a usar este comando.',
-	},
-	fr: {
-		startCommand:
-			'Bot démarré ! Vous recevrez des mises à jour horaires sur les niveaux de sucre dans le sang.',
-		hourlyUpdate: 'Envoi de mises à jour horaires de la glycémie...',
-		scheduleJobStarted: 'Tâche de mise à jour horaire démarrée.',
-		jobAlreadyStarted: 'La tâche a déjà été démarrée.',
-		errorGettingData: "Échec de l'obtention des données de Nightscout.",
-		errorSendingMessage: "Erreur lors de l'envoi du message au chat",
-		lastBloodSugar: {
-			'mmol/L': 'Dernière valeur de glycémie : {value} mmol/L',
-			'mg/dL': 'Dernière valeur de glycémie : {value} mg/dL',
-		},
-		helpMessage:
-			"J'envoie la dernière valeur de glycémie toutes les heures après la commande /start.",
-		useStartCommand:
-			'Utilisez la commande /start pour commencer à recevoir des mises à jour horaires de la glycémie.',
-		notAuthorized: "Vous n'êtes pas autorisé à utiliser cette commande.",
-	},
-}
-
-module.exports = translations
+module.exports = {
+  en: {
+    startCommand: "Use the /start command to start receiving hourly blood sugar updates.",
+    errorGettingData: "Error getting blood sugar data.",
+    notAuthorized: "You are not authorized to use this command.",
+    helpMessage: "Use the /start command to start receiving hourly blood sugar updates.",
+    adminPanel: "Admin panel",
+    addId: "Add ID",
+    removeId: "Remove ID",
+    viewIds: "View IDs",
+    broadcastMessage: "Broadcast Message",
+    enterIdToAdd: "Enter ID to add:",
+    enterIdToRemove: "Enter ID to remove:",
+    listIds: "List of IDs:\n{ids}",
+    enterMessageToBroadcast: "Enter the message to broadcast:",
+    idAdded: "ID {id} added.",
+    idExists: "ID {id} already exists.",
+    idRemoved: "ID {id} removed.",
+    idNotFound: "ID {id} not found.",
+    messageSent: "Message sent to all users.",
+    useStartCommand: "Use the /start command to start receiving hourly blood sugar updates.",
+    noDataPoints: "No data points available to display a graph.",
+    bloodSugarLevel: "Blood Sugar Level",
+    graph: {
+      hours: "Hours",
+      bloodSugarLevels: "Blood Sugar Levels"
+    }
+  },
+  ru: {
+    startCommand: "Используйте команду /start, чтобы начать получать ежечасные обновления уровня сахара в крови.",
+    errorGettingData: "Ошибка при получении данных о сахаре в крови.",
+    notAuthorized: "Вы не авторизованы для использования этой команды.",
+    helpMessage: "Используйте команду /start, чтобы начать получать ежечасные обновления уровня сахара в крови.",
+    adminPanel: "Админ панель",
+    addId: "Добавить ID",
+    removeId: "Удалить ID",
+    viewIds: "Просмотр ID",
+    broadcastMessage: "Рассылка сообщения",
+    enterIdToAdd: "Введите ID для добавления:",
+    enterIdToRemove: "Введите ID для удаления:",
+    listIds: "Список ID:\n{ids}",
+    enterMessageToBroadcast: "Введите сообщение для рассылки:",
+    idAdded: "ID {id} добавлен.",
+    idExists: "ID {id} уже существует.",
+    idRemoved: "ID {id} удален.",
+    idNotFound: "ID {id} не найден.",
+    messageSent: "Сообщение отправлено всем пользователям.",
+    useStartCommand: "Используйте команду /start, чтобы начать получать ежечасные обновления уровня сахара в крови.",
+    noDataPoints: "Нет данных для отображения графика.",
+    bloodSugarLevel: "Уровень сахара в крови",
+    graph: {
+      hours: "Часы",
+      bloodSugarLevels: "Уровень сахара в крови"
+    }
+  },
+  de: {
+    startCommand: "Verwenden Sie den Befehl /start, um stündliche Blutzucker-Updates zu erhalten.",
+    errorGettingData: "Fehler beim Abrufen der Blutzuckerdaten.",
+    notAuthorized: "Sie sind nicht berechtigt, diesen Befehl zu verwenden.",
+    helpMessage: "Verwenden Sie den Befehl /start, um stündliche Blutzucker-Updates zu erhalten.",
+    adminPanel: "Admin-Panel",
+    addId: "ID hinzufügen",
+    removeId: "ID entfernen",
+    viewIds: "IDs anzeigen",
+    broadcastMessage: "Nachricht senden",
+    enterIdToAdd: "Geben Sie die hinzuzufügende ID ein:",
+    enterIdToRemove: "Geben Sie die zu entfernende ID ein:",
+    listIds: "Liste der IDs:\n{ids}",
+    enterMessageToBroadcast: "Geben Sie die Nachricht ein, die gesendet werden soll:",
+    idAdded: "ID {id} hinzugefügt.",
+    idExists: "ID {id} existiert bereits.",
+    idRemoved: "ID {id} entfernt.",
+    idNotFound: "ID {id} nicht gefunden.",
+    messageSent: "Nachricht an alle Benutzer gesendet.",
+    useStartCommand: "Verwenden Sie den Befehl /start, um stündliche Blutzucker-Updates zu erhalten.",
+    noDataPoints: "Keine Datenpunkte verfügbar, um ein Diagramm anzuzeigen.",
+    bloodSugarLevel: "Blutzuckerspiegel",
+    graph: {
+      hours: "Stunden",
+      bloodSugarLevels: "Blutzuckerspiegel"
+    }
+  },
+  es: {
+    startCommand: "Usa el comando /start para comenzar a recibir actualizaciones horarias de azúcar en la sangre.",
+    errorGettingData: "Error al obtener datos de azúcar en la sangre.",
+    notAuthorized: "No estás autorizado para usar este comando.",
+    helpMessage: "Usa el comando /start para comenzar a recibir actualizaciones horarias de azúcar en la sangre.",
+    adminPanel: "Panel de administración",
+    addId: "Agregar ID",
+    removeId: "Eliminar ID",
+    viewIds: "Ver IDs",
+    broadcastMessage: "Enviar mensaje",
+    enterIdToAdd: "Introduce el ID para agregar:",
+    enterIdToRemove: "Introduce el ID para eliminar:",
+    listIds: "Lista de IDs:\n{ids}",
+    enterMessageToBroadcast: "Introduce el mensaje para enviar:",
+    idAdded: "ID {id} agregado.",
+    idExists: "ID {id} ya existe.",
+    idRemoved: "ID {id} eliminado.",
+    idNotFound: "ID {id} no encontrado.",
+    messageSent: "Mensaje enviado a todos los usuarios.",
+    useStartCommand: "Usa el comando /start para comenzar a recibir actualizaciones horarias de azúcar en la sangre.",
+    noDataPoints: "No hay puntos de datos disponibles para mostrar un gráfico.",
+    bloodSugarLevel: "Nivel de azúcar en la sangre",
+    graph: {
+      hours: "Horas",
+      bloodSugarLevels: "Niveles de azúcar en la sangre"
+    }
+  },
+  zh: {
+    startCommand: "使用 /start 命令开始接收每小时的血糖更新。",
+    errorGettingData: "获取血糖数据时出错。",
+    notAuthorized: "您无权使用此命令。",
+    helpMessage: "使用 /start 命令开始接收每小时的血糖更新。",
+    adminPanel: "管理面板",
+    addId: "添加 ID",
+    removeId: "删除 ID",
+    viewIds: "查看 ID",
+    broadcastMessage: "发送消息",
+    enterIdToAdd: "输入要添加的 ID:",
+    enterIdToRemove: "输入要删除的 ID:",
+    listIds: "ID 列表:\n{ids}",
+    enterMessageToBroadcast: "输入要发送的消息:",
+    idAdded: "ID {id} 已添加。",
+    idExists: "ID {id} 已存在。",
+    idRemoved: "ID {id} 已删除。",
+    idNotFound: "未找到 ID {id}。",
+    messageSent: "消息已发送给所有用户。",
+    useStartCommand: "使用 /start 命令开始接收每小时的血糖更新。",
+    noDataPoints: "没有可显示图表的数据点。",
+    bloodSugarLevel: "血糖水平",
+    graph: {
+      hours: "小时",
+      bloodSugarLevels: "血糖水平"
+    }
+  },
+  pt: {
+    startCommand: "Use o comando /start para começar a receber atualizações horárias de açúcar no sangue.",
+    errorGettingData: "Erro ao obter dados de açúcar no sangue.",
+    notAuthorized: "Você não está autorizado a usar este comando.",
+    helpMessage: "Use o comando /start para começar a receber atualizações horárias de açúcar no sangue.",
+    adminPanel: "Painel de administração",
+    addId: "Adicionar ID",
+    removeId: "Remover ID",
+    viewIds: "Ver IDs",
+    broadcastMessage: "Enviar mensagem",
+    enterIdToAdd: "Digite o ID para adicionar:",
+    enterIdToRemove: "Digite o ID para remover:",
+    listIds: "Lista de IDs:\n{ids}",
+    enterMessageToBroadcast: "Digite a mensagem para enviar:",
+    idAdded: "ID {id} adicionado.",
+    idExists: "ID {id} já existe.",
+    idRemoved: "ID {id} removido.",
+    idNotFound: "ID {id} não encontrado.",
+    messageSent: "Mensagem enviada para todos os usuários.",
+    useStartCommand: "Use o comando /start para começar a receber atualizações horárias de açúcar no sangue.",
+    noDataPoints: "Nenhum ponto de dados disponível para exibir um gráfico.",
+    bloodSugarLevel: "Nível de açúcar no sangue",
+    graph: {
+      hours: "Horas",
+      bloodSugarLevels: "Níveis de açúcar no sangue"
+    }
+  },
+  fr: {
+    startCommand: "Utilisez la commande /start pour commencer à recevoir des mises à jour horaires de la glycémie.",
+    errorGettingData: "Erreur lors de la récupération des données de glycémie.",
+    notAuthorized: "Vous n'êtes pas autorisé à utiliser cette commande.",
+    helpMessage: "Utilisez la commande /start pour commencer à recevoir des mises à jour horaires de la glycémie.",
+    adminPanel: "Panneau d'administration",
+    addId: "Ajouter un ID",
+    removeId: "Supprimer l'ID",
+    viewIds: "Voir les ID",
+    broadcastMessage: "Envoyer un message",
+    enterIdToAdd: "Entrez l'ID à ajouter:",
+    enterIdToRemove: "Entrez l'ID à supprimer:",
+    listIds: "Liste des ID:\n{ids}",
+    enterMessageToBroadcast: "Entrez le message à diffuser:",
+    idAdded: "ID {id} ajouté.",
+    idExists: "L'ID {id} existe déjà.",
+    idRemoved: "ID {id} supprimé.",
+    idNotFound: "ID {id} introuvable.",
+    messageSent: "Message envoyé à tous les utilisateurs.",
+    useStartCommand: "Utilisez la commande /start pour commencer à recevoir des mises à jour horaires de la glycémie.",
+    noDataPoints: "Aucun point de données disponible pour afficher un graphique.",
+    bloodSugarLevel: "Niveau de sucre dans le sang",
+    graph: {
+      hours: "Heures",
+      bloodSugarLevels: "Niveaux de sucre dans le sang"
+    }
+  }
+};

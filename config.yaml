@@ -1,20 +1,8 @@
-botToken: 'YOUR_TELEGRAM_BOT_TOKEN'
-nightscoutUrl: 'YOUR_NIGHTSCOUT_URL'
+botToken: 'YOUR_BOT_TOKEN'
+adminId: 'YOUR_ADMIN_ID'
 chatIds:
-  - 'CHAT_ID_1'
-  - 'CHAT_ID_2'
-language: 'en'
-units: 'mmol/L'
+  - 'USER_ID_1'
+  - 'USER_ID_2'
 
-# Available language options:
-# en - English
-# de - German
-# es - Spanish
-# zh - Chinese
-# ru - Russian
-# pt - Portuguese
-# fr - French
-
-# Available units options:
-# mmol/L - Millimoles per liter
-# mg/dL - Milligrams per deciliter
+unit: 'mmol/L' # Units: 'mmol/L' или 'mg/dL'
+language: 'en' # Languages: en, ru, de, es, zh, pt, fr
