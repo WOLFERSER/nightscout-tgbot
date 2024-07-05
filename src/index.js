@@ -3,7 +3,7 @@ const jobService = require('./services/jobService')
 const nightscoutService = require('./services/nightscoutService')
 const messageService = require('./services/messageService')
 const translations = require('./translations')
-const config = require('../config')
+const config = require('./config')
 
 const bot = new Telegraf(config.botToken)
 const t = translations[config.language]
@@ -19,11 +19,8 @@ bot.start(async ctx => {
 bot.command('sugar', async ctx => {
 	if (config.chatIds.includes(ctx.chat.id.toString())) {
 		try {
-			const value = await nightscoutService.getLastBloodSugar(config.units)
-			const message = messageService.formatBloodSugarMessage(
-				value,
-				config.units
-			)
+			const value = await nightscoutService.getLastBloodSugar()
+			const message = messageService.formatBloodSugarMessage(value)
 			ctx.reply(message)
 		} catch (error) {
 			ctx.reply(t.errorGettingData)

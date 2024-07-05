@@ -1,7 +1,6 @@
 const schedule = require('node-schedule')
 const nightscoutService = require('./nightscoutService')
 const messageService = require('./messageService')
-const config = require('../config')
 
 let jobScheduled = false
 
@@ -18,8 +17,8 @@ async function startJob() {
 
 async function sendBloodSugarUpdate() {
 	try {
-		const value = await nightscoutService.getLastBloodSugar(config.units)
-		const message = messageService.formatBloodSugarMessage(value, config.units)
+		const value = await nightscoutService.getLastBloodSugar()
+		const message = messageService.formatBloodSugarMessage(value)
 		await messageService.sendMessageToChats(message)
 		console.log('Sent hourly blood sugar update.')
 	} catch (error) {

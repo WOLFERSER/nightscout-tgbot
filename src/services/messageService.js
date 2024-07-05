@@ -1,5 +1,5 @@
-const translations = require('../translations')
 const { Telegraf } = require('telegraf')
+const translations = require('../translations')
 const config = require('../config')
 
 const bot = new Telegraf(config.botToken)
@@ -15,8 +15,8 @@ async function sendMessageToChats(message) {
 	}
 }
 
-function formatBloodSugarMessage(value, units) {
-	return t.lastBloodSugar[units].replace('{value}', value)
+function formatBloodSugarMessage(value) {
+	return t.lastBloodSugar[config.units].replace('{value}', value)
 }
 
 module.exports = {
