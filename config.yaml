@@ -1,8 +1,9 @@
-botToken: '7278620564:AAGGm8IJZ_TW8AnXsUNOTT8sMqNw5pmHdI8'
-nightscoutUrl: 'https://db349.med-data.online'
+botToken: 'YOUR_TELEGRAM_BOT_TOKEN'
+nightscoutUrl: 'YOUR_NIGHTSCOUT_URL'
 chatIds:
-  - '5064548184'
-language: 'ru'
+  - 'CHAT_ID_1'
+  - 'CHAT_ID_2'
+language: 'en'
 units: 'mmol/L'
 
 # Available language options:
