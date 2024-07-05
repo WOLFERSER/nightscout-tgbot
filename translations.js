@@ -15,6 +15,7 @@ const translations = {
 			'I send the latest blood sugar value every hour after the /start command.',
 		useStartCommand:
 			'Use the /start command to start receiving hourly blood sugar updates.',
+		notAuthorized: 'You are not authorized to use this command.',
 	},
 	de: {
 		startCommand:
@@ -32,6 +33,7 @@ const translations = {
 			'Ich sende den neuesten Blutzuckerwert jede Stunde nach dem Befehl /start.',
 		useStartCommand:
 			'Verwenden Sie den Befehl /start, um stündliche Blutzucker-Updates zu erhalten.',
+		notAuthorized: 'Sie sind nicht berechtigt, diesen Befehl zu verwenden.',
 	},
 	es: {
 		startCommand:
@@ -49,6 +51,7 @@ const translations = {
 			'Envio el último valor de azúcar en sangre cada hora después del comando /start.',
 		useStartCommand:
 			'Usa el comando /start para comenzar a recibir actualizaciones horarias de azúcar en la sangre.',
+		notAuthorized: 'No está autorizado para usar este comando.',
 	},
 	zh: {
 		startCommand: '机器人已启动！您将每小时收到一次血糖水平更新。',
@@ -63,6 +66,7 @@ const translations = {
 		},
 		helpMessage: '在 /start 命令后，我会每小时发送最新的血糖值。',
 		useStartCommand: '使用 /start 命令开始接收每小时的血糖更新。',
+		notAuthorized: '您无权使用此命令。',
 	},
 	ru: {
 		startCommand:
@@ -80,6 +84,7 @@ const translations = {
 			'Я отправляю последнее значение сахара в крови каждый час после команды /start.',
 		useStartCommand:
 			'Используйте команду /start, чтобы начать получать ежечасные обновления уровня сахара в крови.',
+		notAuthorized: 'Вы не авторизованы для использования этой команды.',
 	},
 	pt: {
 		startCommand:
@@ -97,6 +102,7 @@ const translations = {
 			'Envio o valor mais recente de açúcar no sangue a cada hora após o comando /start.',
 		useStartCommand:
 			'Use o comando /start para começar a receber atualizações horárias de açúcar no sangue.',
+		notAuthorized: 'Você não está autorizado a usar este comando.',
 	},
 	fr: {
 		startCommand:
@@ -114,6 +120,7 @@ const translations = {
 			"J'envoie la dernière valeur de glycémie toutes les heures après la commande /start.",
 		useStartCommand:
 			'Utilisez la commande /start pour commencer à recevoir des mises à jour horaires de la glycémie.',
+		notAuthorized: "Vous n'êtes pas autorisé à utiliser cette commande.",
 	},
 }
 

@@ -70,6 +70,16 @@ bot.start(async ctx => {
 	}
 })
 
+// Handle /sugar command to get the latest blood sugar value
+bot.command('sugar', async ctx => {
+	if (config.chatIds.includes(ctx.chat.id.toString())) {
+		const message = await getLastBloodSugar()
+		ctx.reply(message)
+	} else {
+		ctx.reply(t.notAuthorized)
+	}
+})
+
 bot
 	.launch()
 	.then(() => {
